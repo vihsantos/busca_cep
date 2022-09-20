@@ -18,6 +18,7 @@ class CardEndereco extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Container(
+        margin: const EdgeInsets.only(top: 10),
         width: size.width * 0.98,
         decoration: BoxDecoration(
             color: PaletaDeCores.branco,
