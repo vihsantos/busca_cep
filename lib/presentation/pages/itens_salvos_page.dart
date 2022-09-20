@@ -22,28 +22,29 @@ class _ItensSalvosPageState extends State<ItensSalvosPage> {
         backgroundColor: PaletaDeCores.azulClaro,
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
-          child: FutureBuilder(
-              future: controller.buscarEnderecos(),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(child: Text("Erro ao acessar os dados."));
-                }
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+          child: ValueListenableBuilder(
+            valueListenable: controller.loadingApi,
+            builder: (context, bool loading, child) {
+              if (loading) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-                List<Endereco> enderecos = snapshot.data;
+              if (controller.error != null) {
+                return const Center(child: Text("Ocorreu um erro"));
+              }
 
-                return ListView.builder(itemBuilder: ((context, index) {
-                  Endereco endereco = enderecos[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: CardEndereco(endereco: endereco),
-                  );
-                }));
-              }),
+              if (controller.enderecos == null) {
+                return const Center(child: Text("Sem endereços salvos"));
+              }
+
+              return ListView.builder(
+                  itemCount: controller.enderecos!.length,
+                  itemBuilder: (context, index) {
+                    Endereco endereco = controller.enderecos![index];
+                    return CardEndereco(endereco: endereco);
+                  });
+            },
+          ),
         ));
   }
 }
