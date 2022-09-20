@@ -1,9 +1,11 @@
 import 'package:busca_cep/presentation/components/card_endereco.dart';
 import 'package:busca_cep/presentation/controllers/itens_salvos_controller.dart';
+import 'package:busca_cep/presentation/pages/ver_mapa.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/endereco.dart';
 import '../components/app_bar.dart';
+import '../components/visualizar_mapa_button.dart';
 import '../core/paleta_de_cores.dart';
 
 class ItensSalvosPage extends StatefulWidget {
@@ -41,7 +43,22 @@ class _ItensSalvosPageState extends State<ItensSalvosPage> {
                   itemCount: controller.enderecos!.length,
                   itemBuilder: (context, index) {
                     Endereco endereco = controller.enderecos![index];
-                    return CardEndereco(endereco: endereco);
+                    return CardEndereco(
+                      endereco: endereco,
+                      child: Center(child: VisualizarMapaButton(
+                        function: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VerMapa(
+                                        latitude:
+                                            double.parse(endereco.latitude!),
+                                        longitude:
+                                            double.parse(endereco.longitude!),
+                                      )));
+                        },
+                      )),
+                    );
                   });
             },
           ),

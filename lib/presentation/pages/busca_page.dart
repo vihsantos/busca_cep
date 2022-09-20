@@ -3,11 +3,13 @@ import 'package:busca_cep/presentation/components/card_endereco.dart';
 import 'package:busca_cep/presentation/components/cep_nao_encontrado.dart';
 import 'package:busca_cep/presentation/controllers/busca_controller.dart';
 import 'package:busca_cep/presentation/core/paleta_de_cores.dart';
+import 'package:busca_cep/presentation/pages/ver_mapa.dart';
 import 'package:busca_cep/repository/buscar_cep_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../components/app_bar.dart';
 import '../components/nenhuma_busca.dart';
+import '../components/visualizar_mapa_button.dart';
 
 class BuscaPage extends StatefulWidget {
   const BuscaPage({super.key});
@@ -120,19 +122,37 @@ class _BuscaPageState extends State<BuscaPage> {
                     }
 
                     Endereco? endereco = controller.endereco;
-                    return CardEndereco(
-                      endereco: endereco!,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  controller.salvarEndereco(endereco);
-                                },
-                                child: const Text("Salvar")),
-                            const ElevatedButton(
-                                onPressed: null, child: Text("Detalhar")),
-                          ]),
+                    return Column(
+                      children: [
+                        CardEndereco(
+                          endereco: endereco!,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        maximumSize: Size(size.width * 0.25,
+                                            size.height * 0.06)),
+                                    onPressed: () {
+                                      controller.salvarEndereco(endereco);
+                                    },
+                                    child: const Text("Salvar")),
+                                VisualizarMapaButton(
+                                  function: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => VerMapa(
+                                                  latitude: double.parse(
+                                                      endereco.latitude!),
+                                                  longitude: double.parse(
+                                                      endereco.longitude!),
+                                                )));
+                                  },
+                                )
+                              ]),
+                        ),
+                      ],
                     );
                   }))
               //CardEndereco(endereco: teste)
