@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:busca_cep/models/estado.dart';
 import 'package:busca_cep/utils/error/db_exception_imp.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../models/cidade.dart';
 import '../../models/endereco.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as p;
 
 class DataBaseHelper {
@@ -57,8 +60,6 @@ class DataBaseHelper {
     final db = await instance.db;
 
     final List<Map<String, dynamic>> maps = await db!.query('enderecos');
-
-    if (maps.length == 10) delete();
 
     return List.generate(maps.length, (i) {
       return Endereco(
