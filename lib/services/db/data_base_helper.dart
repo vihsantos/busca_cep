@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:busca_cep/models/estado.dart';
 import 'package:busca_cep/utils/error/db_exception_imp.dart';
 import 'package:sqflite/sqflite.dart';

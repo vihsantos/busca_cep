@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:busca_cep/presentation/components/app_bar.dart';
 import 'package:busca_cep/presentation/core/paleta_de_cores.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
