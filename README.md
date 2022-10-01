@@ -6,6 +6,6 @@ Um projeto em flutter.
 
 Ferramenta para buscar e salvar cep e mostrar a sua localização no mapa.
 
-Versão do Flutter utilizada : 3.3.2
+Versão do Flutter utilizada : 3.0.0
 
 
