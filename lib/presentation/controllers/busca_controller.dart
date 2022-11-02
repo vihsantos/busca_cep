@@ -1,4 +1,4 @@
-import 'package:busca_cep/services/db/data_base_helper.dart';
+import 'package:busca_cep/repository/data_base_helper.dart';
 import 'package:flutter/cupertino.dart';
 import '../../models/endereco.dart';
 import '../../repository/buscar_cep_repository.dart';

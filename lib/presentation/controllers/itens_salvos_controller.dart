@@ -5,7 +5,7 @@ import 'package:busca_cep/utils/error/db_exception_if.dart';
 import 'package:busca_cep/utils/error/db_exception_imp.dart';
 
 import '../../models/endereco.dart';
-import '../../services/db/data_base_helper.dart';
+import '../../repository/data_base_helper.dart';
 
 class ItensSalvosController {
   List<Endereco>? enderecos;
