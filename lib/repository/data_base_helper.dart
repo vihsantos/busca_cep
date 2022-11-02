@@ -1,8 +1,8 @@
 import 'package:busca_cep/models/estado.dart';
 import 'package:busca_cep/utils/error/db_exception_imp.dart';
 import 'package:sqflite/sqflite.dart';
-import '../../models/cidade.dart';
-import '../../models/endereco.dart';
+import '../models/cidade.dart';
+import '../models/endereco.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as p;
 
@@ -73,7 +73,7 @@ class DataBaseHelper {
     });
   }
 
-  Future delete() async {
+  Future deletetable() async {
     final db = await instance.db;
 
     try {
